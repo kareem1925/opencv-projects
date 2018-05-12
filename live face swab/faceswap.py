@@ -41,7 +41,7 @@ OVERLAY_POINTS = [
 # Amount of blur to use during colour correction, as a fraction of the
 # pupillary distance.
 COLOUR_CORRECT_BLUR_FRAC = 0.6
-cascade_path='Haarcascades/haarcascade_frontalface_default.xml'
+cascade_path='haarcascade_frontalface_default.xml'
 cascade = cv2.CascadeClassifier(cascade_path)
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(PREDICTOR_PATH)
@@ -108,11 +108,6 @@ def transformation_from_points(points1, points2):
         sum ||s*R*p1,i + T - p2,i||^2
     is minimized.
     """
-    # Solve the procrustes problem by subtracting centroids, scaling by the
-    # standard deviation, and then using the SVD to calculate the rotation. See
-    # the following for more details:
-    #   https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem
-
     points1 = points1.astype(numpy.float64)
     points2 = points2.astype(numpy.float64)
 
@@ -206,7 +201,7 @@ def face_swap(img,name):
     cv2.imwrite('output.jpg', output_im)
     image = cv2.imread('output.jpg')
     
-    frame = cv2.resize(image,None,fx=1.5, fy=1.5, interpolation = cv2.INTER_LINEAR)
+#    frame = cv2.resize(image,None,fx=1.5, fy=1.5, interpolation = cv2.INTER_LINEAR)
     
     return image  
     
@@ -224,7 +219,7 @@ dlibOn = True
 while True:   
     ret, frame = cap.read()   
     
-    #Reduce image size by 75% to reduce processing time and improve framerates
+    
     frame = cv2.resize(frame, None, fx=0.6, fy=0.6, interpolation = cv2.INTER_LINEAR)
     
     # flip image so that it's more mirror like
