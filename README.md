@@ -1,4 +1,5 @@
 # opencv-projects
 
 - [x] face swapping
-- [ ] tutorial for creating Haar Cascade xml file and multi-scale detector 
+- [x] tutorial for creating Haar Cascade xml file and multi-scale detector
+- [ ] using tiny dnn with opencv and python
